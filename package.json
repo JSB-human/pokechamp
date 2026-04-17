@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "collect:data": "node scripts/collect-champions-data.mjs",
+    "localize:ko": "node scripts/generate-ko-localization.mjs"
   },
   "dependencies": {
     "next": "16.2.4",

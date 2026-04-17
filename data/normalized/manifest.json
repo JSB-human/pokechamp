@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-04-17T06:48:45.836Z",
+  "pages": {
+    "pokebase": {
+      "overview": {
+        "url": "https://pokebase.app/pokemon-champions",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:39.452Z",
+        "bytes": 1240300
+      },
+      "pokemon": {
+        "url": "https://pokebase.app/pokemon-champions/pokemon",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:41.279Z",
+        "bytes": 1776546
+      },
+      "moves": {
+        "url": "https://pokebase.app/pokemon-champions/moves",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:42.687Z",
+        "bytes": 927075
+      },
+      "items": {
+        "url": "https://pokebase.app/pokemon-champions/items",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:43.602Z",
+        "bytes": 276007
+      },
+      "abilities": {
+        "url": "https://pokebase.app/pokemon-champions/abilities",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:44.849Z",
+        "bytes": 1513780
+      }
+    },
+    "opgg": {
+      "overview": {
+        "url": "https://op.gg/ko/pokemon-champions/",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:45.011Z",
+        "bytes": 231992
+      },
+      "calculator": {
+        "url": "https://op.gg/ko/pokemon-champions/calculator",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:45.159Z",
+        "bytes": 1044994
+      },
+      "typeChart": {
+        "url": "https://op.gg/pokemon-champions/type-effectiveness",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:45.240Z",
+        "bytes": 267791
+      }
+    },
+    "namu": {
+      "overview": {
+        "url": "https://namu.wiki/w/%ED%8F%AC%EC%BC%93%EB%AA%AC%20%EC%B1%94%ED%94%BC%EC%96%B8%EC%8A%A4",
+        "status": 200,
+        "fetchedAt": "2026-04-17T06:48:45.792Z",
+        "bytes": 508902
+      }
+    }
+  },
+  "counts": {
+    "pokebasePokemon": 100,
+    "pokebaseAbilities": 100,
+    "pokebaseItems": 117,
+    "pokebaseMoves": 937
+  }
+}

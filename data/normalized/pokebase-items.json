@@ -1,0 +1,937 @@
+[
+  {
+    "name": "Abomasite",
+    "slug": "abomasite",
+    "description": "One of a variety of mysterious Mega Stones. An Abomasnow holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Absolite",
+    "slug": "absolite",
+    "description": "One of a variety of mysterious Mega Stones. An Absol holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Aerodactylite",
+    "slug": "aerodactylite",
+    "description": "One of a variety of mysterious Mega Stones. An Aerodactyl holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Aggronite",
+    "slug": "aggronite",
+    "description": "One of a variety of mysterious Mega Stones. An Aggron holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Alakazite",
+    "slug": "alakazite",
+    "description": "One of a variety of mysterious Mega Stones. An Alakazam holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Altarianite",
+    "slug": "altarianite",
+    "description": "One of a variety of mysterious Mega Stones. An Altaria holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Ampharosite",
+    "slug": "ampharosite",
+    "description": "One of a variety of mysterious Mega Stones. An Ampharos holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Aspear Berry",
+    "slug": "aspear-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from being frozen on its own in battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Audinite",
+    "slug": "audinite",
+    "description": "One of a variety of mysterious Mega Stones. An Audino holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Babiri Berry",
+    "slug": "babiri-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Steel-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Banettite",
+    "slug": "banettite",
+    "description": "One of a variety of mysterious Mega Stones. A Banette holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Beedrillite",
+    "slug": "beedrillite",
+    "description": "One of a variety of mysterious Mega Stones. A Beedrill holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Black Belt",
+    "slug": "black-belt",
+    "description": "An item to be held by a Pokémon. This belt helps the wearer to focus and boosts the power of Fighting-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Black Glasses",
+    "slug": "black-glasses",
+    "description": "An item to be held by a Pokémon. It’s a pair of shady-looking glasses that boost the power of Dark-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Blastoisinite",
+    "slug": "blastoisinite",
+    "description": "One of a variety of mysterious Mega Stones. A Blastoise holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Bright Powder",
+    "slug": "bright-powder",
+    "description": "An item to be held by a Pokémon. It casts a tricky glare that lowers the opposing Pokémon’s accuracy.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Cameruptite",
+    "slug": "cameruptite",
+    "description": "One of a variety of mysterious Mega Stones. A Camerupt holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Chandelurite",
+    "slug": "chandelurite",
+    "description": "One of a variety of mysterious Mega Stones. A Chandelure holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Charcoal",
+    "slug": "charcoal",
+    "description": "An item to be held by a Pokémon. It’s a combustible fuel that boosts the power of Fire-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Charizardite X",
+    "slug": "charizardite-x",
+    "description": "One of a variety of mysterious Mega Stones. A Charizard holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Charizardite Y",
+    "slug": "charizardite-y",
+    "description": "One of a variety of mysterious Mega Stones. A Charizard holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Charti Berry",
+    "slug": "charti-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Rock-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Cheri Berry",
+    "slug": "cheri-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from paralysis on its own in battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Chesnaughtite",
+    "slug": "chesnaughtite",
+    "description": "One of a variety of mysterious Mega Stones. A Chesnaught holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "deposit-legends-za"
+  },
+  {
+    "name": "Chesto Berry",
+    "slug": "chesto-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from sleep on its own in battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Chilan Berry",
+    "slug": "chilan-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one Normal-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Chimechite",
+    "slug": "chimechite",
+    "description": "One of a variety of mysterious Mega Stones. A Chimecho holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Choice Scarf",
+    "slug": "choice-scarf",
+    "description": "An item to be held by a Pokémon. This curious scarf boosts Speed but only allows the use of one move.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Chople Berry",
+    "slug": "chople-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fighting-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Clefablite",
+    "slug": "clefablite",
+    "description": "One of a variety of mysterious Mega Stones. A Clefable holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Coba Berry",
+    "slug": "coba-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Flying-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Colbur Berry",
+    "slug": "colbur-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Dark-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Crabominite",
+    "slug": "crabominite",
+    "description": "One of a variety of mysterious Mega Stones. A Crabominable holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Delphoxite",
+    "slug": "delphoxite",
+    "description": "One of a variety of mysterious Mega Stones. A Delphox holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "deposit-legends-za"
+  },
+  {
+    "name": "Dragon Fang",
+    "slug": "dragon-fang",
+    "description": "An item to be held by a Pokémon. This hard and sharp fang boosts the power of Dragon-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Dragoninite",
+    "slug": "dragoninite",
+    "description": "One of a variety of mysterious Mega Stones. A Dragonite holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Drampanite",
+    "slug": "drampanite",
+    "description": "One of a variety of mysterious Mega Stones. A Drampa holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Emboarite",
+    "slug": "emboarite",
+    "description": "One of a variety of mysterious Mega Stones. An Emboar holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Excadrite",
+    "slug": "excadrite",
+    "description": "One of a variety of mysterious Mega Stones. An Excadrill holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Fairy Feather",
+    "slug": "fairy-feather",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Feraligite",
+    "slug": "feraligite",
+    "description": "One of a variety of mysterious Mega Stones. A Feraligatr holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Floettite",
+    "slug": "floettite",
+    "description": "One of a variety of mysterious Mega Stones. A special Floette holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "deposit-legends-za"
+  },
+  {
+    "name": "Focus Band",
+    "slug": "focus-band",
+    "description": "An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Focus Sash",
+    "slug": "focus-sash",
+    "description": "An item to be held by a Pokémon. If the holder has full HP, it will endure a potential KO attack with 1 HP. The item then disappears.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Froslassite",
+    "slug": "froslassite",
+    "description": "One of a variety of mysterious Mega Stones. A Froslass holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Galladite",
+    "slug": "galladite",
+    "description": "One of a variety of mysterious Mega Stones. A Gallade holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Garchompite",
+    "slug": "garchompite",
+    "description": "One of a variety of mysterious Mega Stones. A Garchomp holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Gardevoirite",
+    "slug": "gardevoirite",
+    "description": "One of a variety of mysterious Mega Stones. A Gardevoir holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Gengarite",
+    "slug": "gengarite",
+    "description": "One of a variety of mysterious Mega Stones. A Gengar holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Glalitite",
+    "slug": "glalitite",
+    "description": "One of a variety of mysterious Mega Stones. A Glalie holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Glimmoranite",
+    "slug": "glimmoranite",
+    "description": "One of a variety of mysterious Mega Stones. A Glimmora holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Golurkite",
+    "slug": "golurkite",
+    "description": "One of a variety of mysterious Mega Stones. A Golurk holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Greninjite",
+    "slug": "greninjite",
+    "description": "One of a variety of mysterious Mega Stones. A Greninja holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "deposit-legends-za"
+  },
+  {
+    "name": "Gyaradosite",
+    "slug": "gyaradosite",
+    "description": "One of a variety of mysterious Mega Stones. A Gyarados holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Haban Berry",
+    "slug": "haban-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Dragon-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Hard Stone",
+    "slug": "hard-stone",
+    "description": "An item to be held by a Pokémon. It’s a durable stone that boosts the power of Rock-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Hawluchanite",
+    "slug": "hawluchanite",
+    "description": "One of a variety of mysterious Mega Stones. A Hawlucha holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Heracronite",
+    "slug": "heracronite",
+    "description": "One of a variety of mysterious Mega Stones. A Heracross holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Houndoominite",
+    "slug": "houndoominite",
+    "description": "One of a variety of mysterious Mega Stones. A Houndoom holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Kangaskhanite",
+    "slug": "kangaskhanite",
+    "description": "One of a variety of mysterious Mega Stones. A Kangaskhan holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Kasib Berry",
+    "slug": "kasib-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ghost-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Kebia Berry",
+    "slug": "kebia-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Poison-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "King’s Rock",
+    "slug": "kings-rock",
+    "description": "An item to be held by a Pokémon. When the holder successfully inflicts damage, the target may also flinch.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Leftovers",
+    "slug": "leftovers",
+    "description": "An item to be held by a Pokémon. The holder’s HP is slowly but steadily restored throughout every battle.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Leppa Berry",
+    "slug": "leppa-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore 10 PP to a depleted move during battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Light Ball",
+    "slug": "light-ball",
+    "description": "An item to be held by Pikachu. It’s a puzzling orb that boosts its Attack and Sp. Atk stats.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-1000-vp"
+  },
+  {
+    "name": "Lopunnite",
+    "slug": "lopunnite",
+    "description": "One of a variety of mysterious Mega Stones. A Lopunny holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Lucarionite",
+    "slug": "lucarionite",
+    "description": "One of a variety of mysterious Mega Stones. A Lucario holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Lum Berry",
+    "slug": "lum-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from any status condition during battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Magnet",
+    "slug": "magnet",
+    "description": "An item to be held by a Pokémon. It’s a powerful magnet that boosts the power of Electric-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Manectite",
+    "slug": "manectite",
+    "description": "One of a variety of mysterious Mega Stones. A Manectric holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Medichamite",
+    "slug": "medichamite",
+    "description": "One of a variety of mysterious Mega Stones. A Medicham holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Meganiumite",
+    "slug": "meganiumite",
+    "description": "One of a variety of mysterious Mega Stones. A Meganium holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Mental Herb",
+    "slug": "mental-herb",
+    "description": "An item to be held by a Pokémon. The holder shakes off move-binding effects to move freely. It can be used only once.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-1000-vp"
+  },
+  {
+    "name": "Meowsticite",
+    "slug": "meowsticite",
+    "description": "One of a variety of mysterious Mega Stones. A Meowstic holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Metal Coat",
+    "slug": "metal-coat",
+    "description": "An item to be held by a Pokémon. It’s a special metallic film that can boost the power of Steel-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Miracle Seed",
+    "slug": "miracle-seed",
+    "description": "An item to be held by a Pokémon. It’s a seed imbued with life-force that boosts the power of Grass-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Mystic Water",
+    "slug": "mystic-water",
+    "description": "An item to be held by a Pokémon. This teardrop-shaped gem boosts the power of Water-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Never-Melt Ice",
+    "slug": "never-melt-ice",
+    "description": "An item to be held by a Pokémon. It’s a heat- repelling piece of ice that boosts the power of Ice-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Occa Berry",
+    "slug": "occa-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fire-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Oran Berry",
+    "slug": "oran-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore its own HP by 10 points during battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Passho Berry",
+    "slug": "passho-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Water-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Payapa Berry",
+    "slug": "payapa-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Psychic-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Pecha Berry",
+    "slug": "pecha-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from poisoning on its own in battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Persim Berry",
+    "slug": "persim-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from confusion on its own in battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Pidgeotite",
+    "slug": "pidgeotite",
+    "description": "One of a variety of mysterious Mega Stones. A Pidgeot holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Pinsirite",
+    "slug": "pinsirite",
+    "description": "One of a variety of mysterious Mega Stones. A Pinsir holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Poison Barb",
+    "slug": "poison-barb",
+    "description": "An item to be held by a Pokémon. This small, poisonous barb boosts the power of Poison-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Quick Claw",
+    "slug": "quick-claw",
+    "description": "An item to be held by a Pokémon. This light, sharp claw lets the bearer move first occasionally.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Rawst Berry",
+    "slug": "rawst-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from a burn on its own in battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Rindo Berry",
+    "slug": "rindo-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Grass-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Roseli Berry",
+    "slug": "roseli-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Sablenite",
+    "slug": "sablenite",
+    "description": "One of a variety of mysterious Mega Stones. A Sableye holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Scizorite",
+    "slug": "scizorite",
+    "description": "One of a variety of mysterious Mega Stones. A Scizor holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Scope Lens",
+    "slug": "scope-lens",
+    "description": "An item to be held by a Pokémon. It’s a lens for scoping out weak points. It boosts the holder’s critical-hit ratio.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-1000-vp"
+  },
+  {
+    "name": "Scovillainite",
+    "slug": "scovillainite",
+    "description": "One of a variety of mysterious Mega Stones. A Scovillain holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Sharp Beak",
+    "slug": "sharp-beak",
+    "description": "An item to be held by a Pokémon. It’s a long, sharp beak that boosts the power of Flying-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Sharpedonite",
+    "slug": "sharpedonite",
+    "description": "One of a variety of mysterious Mega Stones. A Sharpedo holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Shell Bell",
+    "slug": "shell-bell",
+    "description": "An item to be held by a Pokémon. The holder restores a little HP every time it inflicts damage on others.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Shuca Berry",
+    "slug": "shuca-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ground-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Silk Scarf",
+    "slug": "silk-scarf",
+    "description": "An item to be held by a Pokémon. It’s a sumptuous scarf that boosts the power of Normal-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Silver Powder",
+    "slug": "silver-powder",
+    "description": "An item to be held by a Pokémon. It’s a shiny silver powder that will boost the power of Bug-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Sitrus Berry",
+    "slug": "sitrus-berry",
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore its own HP by a small amount during battle.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Skarmorite",
+    "slug": "skarmorite",
+    "description": "One of a variety of mysterious Mega Stones. A Skarmory holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Slowbronite",
+    "slug": "slowbronite",
+    "description": "One of a variety of mysterious Mega Stones. A Slowbro holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Soft Sand",
+    "slug": "soft-sand",
+    "description": "An item to be held by a Pokémon. It’s a loose, silky sand that boosts the power of Ground-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Spell Tag",
+    "slug": "spell-tag",
+    "description": "An item to be held by a Pokémon. It’s a sinister, eerie tag that boosts the power of Ghost-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Starminite",
+    "slug": "starminite",
+    "description": "One of a variety of mysterious Mega Stones. A Starmie holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Steelixite",
+    "slug": "steelixite",
+    "description": "One of a variety of mysterious Mega Stones. A Steelix holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Tanga Berry",
+    "slug": "tanga-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Bug-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "Twisted Spoon",
+    "slug": "twisted-spoon",
+    "description": "An item to be held by a Pokémon. This spoon is imbued with telekinetic power and boosts Psychic-type moves.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "shop-700-vp"
+  },
+  {
+    "name": "Tyranitarite",
+    "slug": "tyranitarite",
+    "description": "One of a variety of mysterious Mega Stones. A Tyranitar holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Venusaurite",
+    "slug": "venusaurite",
+    "description": "One of a variety of mysterious Mega Stones. A Venusaur holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Victreebelite",
+    "slug": "victreebelite",
+    "description": "One of a variety of mysterious Mega Stones. A Victreebel holding this stone will be able to Mega Evolve during battle.",
+    "category": "mega-evolution",
+    "availableInChampions": true,
+    "unlock": "shop-2000-vp"
+  },
+  {
+    "name": "Wacan Berry",
+    "slug": "wacan-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Electric-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  },
+  {
+    "name": "White Herb",
+    "slug": "white-herb",
+    "description": "An item to be held by a Pokémon. It will restore any lowered stat in battle. It can be used only once.",
+    "category": "held-item",
+    "availableInChampions": true,
+    "unlock": "beginning"
+  },
+  {
+    "name": "Yache Berry",
+    "slug": "yache-berry",
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ice-type attack.",
+    "category": "berry",
+    "availableInChampions": true,
+    "unlock": "shop-400-vp"
+  }
+]
