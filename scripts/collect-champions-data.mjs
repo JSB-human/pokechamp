@@ -32,19 +32,68 @@ const HEADERS = {
   accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 };
 
-const STAT_KEYS = ["hp", "atk", "def", "spa", "spd", "spe"];
+const JSON_HEADERS = {
+  "user-agent": HEADERS["user-agent"],
+  accept: "application/json",
+};
+
 const DETAIL_CONCURRENCY = 8;
+
+const MOVE_DESCRIPTION_OVERRIDES = {
+  "blazing-torque": "불꽃 에너지를 실은 바퀴로 상대를 공격한다. 화상 상태로 만들 때가 있다.",
+  "combat-torque": "격투 에너지를 실은 바퀴로 상대를 공격한다. 혼란 상태로 만들 때가 있다.",
+  "magical-torque": "페어리 에너지를 실은 바퀴로 상대를 공격한다. 혼란 상태로 만들 때가 있다.",
+  "noxious-torque": "독 에너지를 실은 바퀴로 상대를 공격한다. 독 상태로 만들 때가 있다.",
+  "wicked-torque": "악 에너지를 실은 바퀴로 상대를 공격한다. 잠 상태로 만들 때가 있다.",
+  "shadow-blast": "다크 포켓몬의 힘으로 상대를 강하게 공격한다.",
+  "shadow-blitz": "다크 포켓몬의 힘으로 몸을 부딪쳐 공격한다.",
+  "shadow-bolt": "다크 포켓몬의 힘으로 전격을 날려 공격한다.",
+  "shadow-break": "다크 포켓몬의 힘으로 상대의 방어를 무너뜨리며 공격한다.",
+  "shadow-chill": "다크 포켓몬의 힘으로 차가운 기운을 날려 공격한다.",
+  "shadow-down": "다크 포켓몬의 힘으로 상대의 능력을 낮춘다.",
+  "shadow-end": "다크 포켓몬의 힘을 끝까지 끌어내 큰 피해를 준다.",
+  "shadow-fire": "다크 포켓몬의 힘으로 검은 불꽃을 날려 공격한다.",
+  "shadow-half": "다크 포켓몬의 힘으로 전투 중인 포켓몬의 HP를 크게 깎는다.",
+  "shadow-hold": "다크 포켓몬의 힘으로 상대를 붙잡아 교체를 어렵게 만든다.",
+  "shadow-mist": "다크 포켓몬의 힘으로 안개를 만들어 능력 상승을 막는다.",
+  "shadow-panic": "다크 포켓몬의 힘으로 상대를 혼란 상태로 만든다.",
+  "shadow-rave": "다크 포켓몬의 힘으로 주변을 휩쓸어 공격한다.",
+  "shadow-rush": "다크 포켓몬의 힘으로 돌진해 공격한다.",
+  "shadow-shed": "다크 포켓몬의 힘으로 자신의 불리한 효과를 떨쳐낸다.",
+  "shadow-sky": "다크 포켓몬의 힘으로 하늘을 어둡게 만들어 피해를 준다.",
+  "shadow-storm": "다크 포켓몬의 힘으로 폭풍을 일으켜 공격한다.",
+  "shadow-wave": "다크 포켓몬의 힘으로 파동을 날려 공격한다.",
+};
+
+const ITEM_DESCRIPTION_OVERRIDES = {
+  "fairy-feather": "지니게 하면 페어리타입 기술의 위력이 올라가는 깃털.",
+};
+
+const ABILITY_POKEMON_OVERRIDES = {
+  "embody-aspect": [
+    "Ogerpon",
+    "Ogerpon (Cornerstone Mask)",
+    "Ogerpon (Hearthflame Mask)",
+    "Ogerpon (Wellspring Mask)",
+  ],
+};
 
 async function main() {
   await ensureDirs();
 
   const fetched = await fetchAllPages();
 
-  const pokebasePokemon = parsePokebasePokemonIndex(fetched.pokebase.pokemon.html);
-  const pokebaseAbilities = parsePokebaseAbilityIndex(fetched.pokebase.abilities.html);
+  const pokebasePokemon = fillMissingPokemonImages(parsePokebasePokemonIndex(fetched.pokebase.pokemon.html));
+  const pokebaseAbilities = await enrichAbilitiesWithPokemon(
+    parsePokebaseAbilityIndex(fetched.pokebase.abilities.html),
+    pokebasePokemon,
+  );
   const pokebaseItems = parsePokebaseItems(fetched.pokebase.items.html);
   const pokebaseMoves = parsePokebaseMoves(fetched.pokebase.moves.html);
-  const pokebaseLearnsets = await collectPokebasePokemonLearnsets(pokebasePokemon);
+  const pokebaseLearnsets = fillEmptyLearnsetsWithRelatedForms(
+    pokebasePokemon,
+    await collectPokebasePokemonLearnsets(pokebasePokemon),
+  );
   const opggOverview = parseOpggOverview(fetched.opgg.overview.html);
   const namuOverview = parseNamuOverview(fetched.namu.overview.html);
 
@@ -121,7 +170,7 @@ async function fetchHtml(url, attempts = 3) {
         throw new Error(`HTTP ${response.status} for ${url}`);
       }
       return await response.text();
-    } catch (error) {
+    } catch {
       lastError = error;
       if (attempt < attempts) {
         await sleep(300 * attempt);
@@ -130,6 +179,24 @@ async function fetchHtml(url, attempts = 3) {
   }
 
   throw lastError;
+}
+
+async function fetchJson(url, attempts = 2) {
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, { headers: JSON_HEADERS });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} for ${url}`);
+      }
+      return await response.json();
+    } catch {
+      if (attempt < attempts) {
+        await sleep(250 * attempt);
+      }
+    }
+  }
+
+  return null;
 }
 
 function summarizeFetches(fetched) {
@@ -229,6 +296,24 @@ function parsePokebasePokemonUsageMap(html) {
   return usageBySlug;
 }
 
+function fillMissingPokemonImages(pokemon) {
+  const iconByNationalNumber = new Map();
+
+  for (const entry of pokemon) {
+    if (entry.iconUrl && !iconByNationalNumber.has(entry.nationalNumber)) {
+      iconByNationalNumber.set(entry.nationalNumber, entry.iconUrl);
+    }
+  }
+
+  return pokemon.map((entry) => ({
+    ...entry,
+    iconUrl:
+      entry.iconUrl ??
+      iconByNationalNumber.get(entry.nationalNumber) ??
+      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${entry.nationalNumber}.png`,
+  }));
+}
+
 function parsePokebaseAbilityIndex(html) {
   const docsArrays = extractEscapedDocsArrays(html);
   const docs = selectDocsArray(
@@ -286,6 +371,59 @@ function parsePokebaseAbilityIndex(html) {
   );
 }
 
+async function enrichAbilitiesWithPokemon(abilities, pokemon) {
+  const pokemonBySlug = new Map(pokemon.map((entry) => [entry.slug, entry.name]));
+  const megaPokemonByAbility = new Map();
+
+  for (const entry of pokemon) {
+    for (const variant of entry.megaVariants) {
+      if (!variant.abilitySlug) {
+        continue;
+      }
+
+      const list = megaPokemonByAbility.get(variant.abilitySlug) ?? [];
+      list.push(entry.name);
+      megaPokemonByAbility.set(variant.abilitySlug, list);
+    }
+  }
+
+  return mapLimit(abilities, 8, async (ability) => {
+    const apiData = await fetchJson(`https://pokeapi.co/api/v2/ability/${ability.slug}`);
+    const apiPokemon = Array.isArray(apiData?.pokemon)
+      ? apiData.pokemon
+          .map((entry) => entry?.pokemon?.name)
+          .filter(Boolean)
+          .flatMap((slug) => findPokemonNamesForPokeApiSlug(slug, pokemonBySlug))
+      : [];
+
+    return {
+      ...ability,
+      pokemon: dedupe([
+        ...(ability.pokemon ?? []),
+        ...apiPokemon,
+        ...(megaPokemonByAbility.get(ability.slug) ?? []),
+        ...(ABILITY_POKEMON_OVERRIDES[ability.slug] ?? []),
+      ]),
+    };
+  });
+}
+
+function findPokemonNamesForPokeApiSlug(slug, pokemonBySlug) {
+  const names = [];
+
+  if (pokemonBySlug.has(slug)) {
+    names.push(pokemonBySlug.get(slug));
+  }
+
+  for (const [candidateSlug, name] of pokemonBySlug) {
+    if (candidateSlug === slug || getBaseSpeciesSlug(candidateSlug) === slug) {
+      names.push(name);
+    }
+  }
+
+  return names;
+}
+
 function parsePokebaseItems(html) {
   const docs = selectDocsArray(
     extractEscapedDocsArrays(html),
@@ -295,7 +433,7 @@ function parsePokebaseItems(html) {
   return docs.map((item) => ({
     name: item.name,
     slug: item.slug,
-    description: item.description ?? "",
+    description: item.description ?? ITEM_DESCRIPTION_OVERRIDES[item.slug] ?? "",
     iconUrl: item.icon?.url ?? null,
     category: item.category ?? null,
     availableInChampions: item.availableInChampions ?? false,
@@ -345,6 +483,44 @@ async function collectPokebasePokemonLearnsets(pokemon) {
   return results;
 }
 
+function fillEmptyLearnsetsWithRelatedForms(pokemon, learnsets) {
+  const pokemonBySlug = new Map(pokemon.map((entry) => [entry.slug, entry]));
+  const learnsetBySlug = new Map(learnsets.map((entry) => [entry.slug, entry]));
+  const populatedByNationalNumber = new Map();
+
+  for (const entry of pokemon) {
+    const learnset = learnsetBySlug.get(entry.slug);
+    if (learnset?.moves?.length && !populatedByNationalNumber.has(entry.nationalNumber)) {
+      populatedByNationalNumber.set(entry.nationalNumber, learnset);
+    }
+  }
+
+  return learnsets.map((entry) => {
+    if (entry.moves.length > 0) {
+      return entry;
+    }
+
+    const pokemonEntry = pokemonBySlug.get(entry.slug);
+    const sameSpeciesLearnset = pokemonEntry
+      ? populatedByNationalNumber.get(pokemonEntry.nationalNumber)
+      : null;
+    const baseSlug = getBaseSpeciesSlug(entry.slug);
+    const baseLearnset = learnsetBySlug.get(baseSlug);
+    const fallback = sameSpeciesLearnset?.moves?.length ? sameSpeciesLearnset : baseLearnset;
+
+    if (!fallback?.moves?.length) {
+      return entry;
+    }
+
+    return {
+      ...entry,
+      moveCount: fallback.moves.length,
+      moves: fallback.moves,
+      fallbackFromSlug: fallback.slug,
+    };
+  });
+}
+
 function mapMoveEntry(move) {
   return {
     name: move.name,
@@ -356,7 +532,7 @@ function mapMoveEntry(move) {
     power: move.power ?? null,
     accuracy: move.accuracy ?? null,
     pp: move.pp ?? null,
-    description: move.description ?? "",
+    description: move.description ?? MOVE_DESCRIPTION_OVERRIDES[move.slug] ?? "",
   };
 }
 
@@ -536,6 +712,21 @@ function slugify(value) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function getBaseSpeciesSlug(slug) {
+  let candidate = slug;
+
+  while (candidate.includes("-")) {
+    if (candidate.startsWith("mega-")) {
+      candidate = candidate.slice(5);
+      continue;
+    }
+
+    candidate = candidate.replace(/-[^-]+$/, "");
+  }
+
+  return candidate;
 }
 
 async function mapLimit(items, limit, mapper) {

@@ -1,9 +1,10 @@
 import { HomeDashboard } from "@/components/home-dashboard";
-import { getNamuOverview, getOpggOverview } from "@/lib/collected-data";
+import { getOpggOverview } from "@/lib/collected-data";
+import { getCatalogPokemon } from "@/lib/pokemon-catalog";
 
 export default function Home() {
   const overview = getOpggOverview();
-  const namuOverview = getNamuOverview();
+  const catalog = getCatalogPokemon();
 
-  return <HomeDashboard overview={overview} namuOverview={namuOverview} />;
+  return <HomeDashboard overview={overview} catalog={catalog} />;
 }

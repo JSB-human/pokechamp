@@ -71,14 +71,57 @@ export type TeamPreset = {
   members: string[];
 };
 
+export type CatalogPokemon = {
+  id: string;
+  name: string;
+  iconUrl: string | null;
+  usage: number;
+  usageLabel: string;
+  types: PokemonType[];
+  typeDetails: Array<{ name: PokemonType; slug: string; iconUrl: string | null }>;
+  baseStats: {
+    hp: number;
+    atk: number;
+    def: number;
+    spa: number;
+    spd: number;
+    spe: number;
+  };
+  weaknesses: PokemonType[];
+  resists: PokemonType[];
+  roles: RoleTag[];
+  moveCount: number;
+  featuredMoves: string[];
+  notes: string;
+  suggestedItem: string | null;
+  suggestedAbility: string | null;
+  setLabel: string | null;
+  setSummary: string | null;
+  megaVariants: CatalogMegaVariant[];
+};
+
+export type CatalogMegaVariant = {
+  id: string;
+  name: string;
+  iconUrl: string | null;
+  types: PokemonType[];
+  typeDetails: Array<{ name: PokemonType; slug: string; iconUrl: string | null }>;
+  baseStats: CatalogPokemon["baseStats"];
+  abilityName: string | null;
+  abilitySlug: string | null;
+  megaStoneName: string | null;
+  megaStoneSlug: string | null;
+  megaStoneIconUrl: string | null;
+};
+
 export type PartyAnalysis = {
-  selected: PokemonRecord[];
+  selected: CatalogPokemon[];
   roleCoverage: RoleTag[];
   sharedWeaknesses: Array<{ type: PokemonType; count: number }>;
   duplicateItems: Array<{ item: string; count: number }>;
   topChecks: Array<{ name: string; count: number }>;
   suggestions: Array<{
-    pokemon: PokemonRecord;
+    pokemon: CatalogPokemon;
     score: number;
     reasons: string[];
   }>;

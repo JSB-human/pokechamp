@@ -1,10 +1,10 @@
 {
   "title": "포켓몬 챔피언스 통계, 티어 리스트, 빌드, 가이드, 아이템, 메타",
-  "pokemonCount": 258,
-  "moveCount": 919,
+  "pokemonCount": null,
+  "moveCount": null,
   "itemCount": null,
-  "abilityCount": 310,
-  "hasCalculator": true,
-  "hasTypeChart": true,
-  "hasTierBuilder": true
+  "abilityCount": null,
+  "hasCalculator": false,
+  "hasTypeChart": false,
+  "hasTierBuilder": false
 }

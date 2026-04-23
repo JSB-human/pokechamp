@@ -38,12 +38,24 @@ export function getCollectedAbilities() {
   return readJson<CollectedAbility[]>("pokebase-ability-index.json");
 }
 
+export function getCollectedAbilityBySlug(slug: string) {
+  return getCollectedAbilities().find((entry) => entry.slug === slug) ?? null;
+}
+
 export function getCollectedItems() {
   return readJson<CollectedItem[]>("pokebase-items.json");
 }
 
+export function getCollectedItemBySlug(slug: string) {
+  return getCollectedItems().find((entry) => entry.slug === slug) ?? null;
+}
+
 export function getCollectedMoves() {
   return readJson<CollectedMove[]>("pokebase-moves.json");
+}
+
+export function getCollectedMoveBySlug(slug: string) {
+  return getCollectedMoves().find((entry) => entry.slug === slug) ?? null;
 }
 
 export function getOpggOverview() {

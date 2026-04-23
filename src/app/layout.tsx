@@ -16,7 +16,7 @@ const displayFont = Space_Grotesk({
 export const metadata: Metadata = {
   title: "포켓몬 챔피언스 데이터",
   description:
-    "포켓몬 챔피언스 데이터를 한국어 중심으로 쉽고 친근하게 정리한 도감, 파티 빌더, 계산기 사이트입니다.",
+    "포켓몬 챔피언스 데이터를 쉽고 친근하게 정리한 한국어 도감, 파티 빌더, 계산기 서비스입니다.",
 };
 
 export default function RootLayout({
@@ -27,6 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
+      data-scroll-behavior="smooth"
       className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">

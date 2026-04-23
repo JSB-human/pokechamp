@@ -24,7 +24,7 @@ export function PokemonThumb({
     <img
       src={getPokemonImageUrl(slugOrName, src)}
       alt={alt}
-      className={`${className} object-contain`}
+      className={`${className} shrink-0 object-contain`}
       loading="lazy"
       onError={(event) => {
         event.currentTarget.src = getPokeballFallback();
@@ -48,7 +48,7 @@ export function ItemThumb({
     <img
       src={getItemImageUrl(slugOrName, src)}
       alt={alt}
-      className={`${className} object-contain`}
+      className={`${className} shrink-0 object-contain`}
       loading="lazy"
       onError={(event) => {
         event.currentTarget.src = getItemFallback();
@@ -72,15 +72,15 @@ export function TypeBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold ${className}`}
+      className={`inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-bold leading-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.34)] ${className}`}
       style={{
         backgroundColor: palette.bg,
         color: palette.fg,
         borderColor: palette.border,
       }}
     >
-      {iconUrl ? <img src={iconUrl} alt="" aria-hidden="true" className="size-4 object-contain" /> : null}
-      <span>{label}</span>
+      {iconUrl ? <img src={iconUrl} alt="" aria-hidden="true" className="size-4 shrink-0 object-contain" /> : null}
+      <span className="truncate">{label}</span>
     </span>
   );
 }

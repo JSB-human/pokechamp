@@ -1,6 +1,6 @@
 import { DataPageShell } from "@/components/data-page-shell";
 import { MovesBrowser } from "@/components/moves-browser";
-import { getCollectedMoves, getOpggOverview } from "@/lib/collected-data";
+import { getCollectedMoves } from "@/lib/collected-data";
 import {
   toKoreanDamageClass,
   toKoreanMoveDescription,
@@ -10,7 +10,6 @@ import {
 
 export default function MovesPage() {
   const moves = getCollectedMoves();
-  const overview = getOpggOverview();
   const localizedMoves = moves.map((move) => ({
     slug: move.slug,
     displayName: toKoreanMoveName(move.name, move.slug),
@@ -32,7 +31,7 @@ export default function MovesPage() {
       description="기술 이름, 타입, 분류, 위력, 명중, PP를 한 번에 확인할 수 있도록 정리한 챔피언스 기술 도감입니다."
       stats={[
         { label: "수집된 기술", value: `${moves.length}` },
-        { label: "OP.GG 집계 수", value: `${overview.moveCount ?? "-"}` },
+        { label: "기술 엔트리", value: `${moves.length}` },
         { label: "빠른 필터", value: "이름, 타입, 분류" },
         { label: "활용 위치", value: "도감, 빌더, 계산기" },
       ]}

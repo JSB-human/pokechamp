@@ -100,7 +100,7 @@ export function toKoreanDamageClass(value: string | null | undefined) {
   return damageClassMap[value] ?? value;
 }
 
-export function toKoreanPokemonName(name: string, slug?: string) {
+export function toKoreanPokemonName(name: string, slug?: string): string {
   const normalizedSlug = slug ?? toSlug(name);
   const entry =
     localization.pokemonBySlug[normalizedSlug] ?? findByEnglishName(localization.pokemonBySlug, name);
@@ -110,6 +110,15 @@ export function toKoreanPokemonName(name: string, slug?: string) {
   }
 
   return applyPokemonFormFallback(name, normalizedSlug);
+}
+
+export function toKoreanPokemonDescription(slug?: string, fallback?: string) {
+  if (!slug) {
+    return fallback ?? "설명 준비 중";
+  }
+
+  const entry = localization.pokemonBySlug[slug];
+  return entry?.description ?? fallback ?? "설명 준비 중";
 }
 
 export function toKoreanMoveName(name: string, slug?: string) {
@@ -211,7 +220,7 @@ function findByEnglishName(source: Record<string, KoMapEntry>, englishName: stri
   return source[toSlug(englishName)];
 }
 
-function applyPokemonFormFallback(name: string, slug: string) {
+function applyPokemonFormFallback(name: string, slug: string): string {
   if (slug.endsWith("-mega")) {
     return `메가 ${toKoreanPokemonName(name.replace(/^Mega\s+/i, ""), slug.replace(/-mega$/, ""))}`;
   }

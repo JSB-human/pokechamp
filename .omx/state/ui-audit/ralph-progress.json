@@ -1,0 +1,15 @@
+{
+  "score": 90,
+  "verdict": "pass",
+  "category_match": true,
+  "differences": [
+    "Before the pass, mobile cards used dense horizontal rows that made content feel clipped at narrow widths.",
+    "The top mobile nav intentionally remains horizontally scrollable because it contains many primary destinations."
+  ],
+  "suggestions": [
+    "Keep future card headers stacked on mobile before switching to side-by-side layouts at sm or md breakpoints.",
+    "Prefer two-column mobile stat grids for numeric summaries, then expand to three or more columns on larger screens.",
+    "Use inner overflow-x containers only for genuinely tabular content such as the 18 x 18 type chart."
+  ],
+  "reasoning": "The main page-level overflow risk has been removed, Korean text wrapping is safer, and the densest cards now use mobile-first stacking. Remaining scroll behavior is intentional for navigation and the large type chart."
+}

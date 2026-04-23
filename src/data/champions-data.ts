@@ -1,12 +1,5 @@
 import type { PokemonRecord, TeamPreset } from "@/types/pokemon";
 
-export const sourceSummary = {
-  siteName: "포케베이스 포켓몬 챔피언스",
-  pageUrl: "https://pokebase.app/pokemon-champions",
-  snapshotDates: ["2026-04-15", "2026-04-16"],
-  note: "Usage, popular items, moves, and tournament trends were seeded from visible Pokebase pages on April 15-16, 2026.",
-};
-
 export const metaThreats = [
   "Sneasler",
   "Incineroar",
@@ -477,19 +470,19 @@ export const teamPresets: TeamPreset[] = [
   {
     id: "rain-balance",
     name: "비 밸런스",
-    description: "Pelipper와 Basculegion을 중심으로 한 가장 무난한 비 운영 밸런스 조합입니다.",
+    description: "펠리퍼와 배쓰나이 기반으로 가장 무난하게 시작할 수 있는 비 운영 밸런스 조합입니다.",
     members: ["Pelipper", "Basculegion", "Archaludon", "Kingambit", "Sinistcha", "Incineroar"],
   },
   {
     id: "fast-pressure",
     name: "초고속 압박",
-    description: "Sneasler와 Aerodactyl로 선공 압박을 이어가는 공격적인 파티입니다.",
+    description: "포푸니크와 프테라로 선공 압박을 이어가는 공격적인 파티입니다.",
     members: ["Sneasler", "Aerodactyl", "Incineroar", "Garchomp", "Farigiraf", "Mega Floette"],
   },
   {
     id: "sun-tailwind",
     name: "쾌청 테일윈드",
-    description: "Charizard와 Venusaur에 Tailwind를 섞어 속도와 화력을 같이 챙기는 조합입니다.",
+    description: "리자몽과 이상해꽃에 테일윈드를 더해 속도와 화력을 함께 챙기는 조합입니다.",
     members: ["Charizard", "Venusaur", "Whimsicott", "Incineroar", "Kingambit", "Wash Rotom"],
   },
 ];

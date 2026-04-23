@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { TypeBadge } from "@/components/media";
 
 type LearnableMove = {
@@ -10,18 +10,44 @@ type LearnableMove = {
   rawType: string;
   typeIconUrl: string | null;
   displayDamageClass: string;
+  rawDamageClass: string | null;
   power: number | null;
   accuracy: number | null;
   pp: number | null;
   description: string;
 };
 
+const CLASS_FILTERS = [
+  { id: "all", label: "전체" },
+  { id: "physical", label: "물리" },
+  { id: "special", label: "특수" },
+  { id: "status", label: "변화" },
+] as const;
+
+type ClassFilter = (typeof CLASS_FILTERS)[number]["id"];
+
 export function PokemonDetailBrowser({ moves }: { moves: LearnableMove[] }) {
   const [query, setQuery] = useState("");
+  const [classFilter, setClassFilter] = useState<ClassFilter>("all");
   const deferredQuery = useDeferredValue(query);
   const keyword = deferredQuery.trim().toLowerCase();
 
+  const availableTypes = useMemo(
+    () =>
+      [...new Map(moves.map((move) => [move.rawType, { type: move.rawType, label: move.displayType }])).values()],
+    [moves],
+  );
+  const [typeFilter, setTypeFilter] = useState<string>("all");
+
   const filtered = moves.filter((move) => {
+    if (classFilter !== "all" && move.rawDamageClass !== classFilter) {
+      return false;
+    }
+
+    if (typeFilter !== "all" && move.rawType !== typeFilter) {
+      return false;
+    }
+
     if (!keyword) {
       return true;
     }
@@ -39,7 +65,7 @@ export function PokemonDetailBrowser({ moves }: { moves: LearnableMove[] }) {
         <div>
           <h2 className="text-2xl font-bold tracking-tight">배울 수 있는 기술</h2>
           <p className="mt-1 text-sm text-slate-500">
-            챔피언스 기준으로 확인된 기술만 모아 두었습니다. 타입, 분류, 위력까지 같이 보면서 바로 세트를 구상할 수 있습니다.
+            챔피언스 기준으로 확인된 기술만 모아 두었습니다. 분류와 타입으로 바로 거르면서 세트를 맞출 수 있습니다.
           </p>
         </div>
         <input
@@ -49,6 +75,51 @@ export function PokemonDetailBrowser({ moves }: { moves: LearnableMove[] }) {
           className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-orange-300 focus:bg-white md:max-w-sm"
         />
       </div>
+
+      <div className="flex flex-wrap gap-2">
+        {CLASS_FILTERS.map((filter) => (
+          <button
+            key={filter.id}
+            type="button"
+            onClick={() => setClassFilter(filter.id)}
+            className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+              classFilter === filter.id
+                ? "bg-slate-950 text-white"
+                : "border border-slate-200 bg-white text-slate-700 hover:border-orange-300"
+            }`}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => setTypeFilter("all")}
+          className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+            typeFilter === "all"
+              ? "bg-orange-500 text-white"
+              : "border border-slate-200 bg-white text-slate-700 hover:border-orange-300"
+          }`}
+        >
+          전체 타입
+        </button>
+        {availableTypes.map((entry) => (
+          <button
+            key={entry.type}
+            type="button"
+            onClick={() => setTypeFilter(entry.type)}
+            className={`rounded-full border px-2 py-1 transition ${
+              typeFilter === entry.type ? "border-orange-300 bg-orange-50" : "border-slate-200 bg-white"
+            }`}
+          >
+            <TypeBadge type={entry.type} label={entry.label} />
+          </button>
+        ))}
+      </div>
+
+      <div className="text-sm text-slate-500">검색 결과 {filtered.length}개</div>
 
       <div className="grid gap-3">
         {filtered.map((move) => (
