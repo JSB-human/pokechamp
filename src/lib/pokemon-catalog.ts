@@ -2,6 +2,8 @@ import { pokemonData } from "@/data/champions-data";
 import {
   getCollectedPokemon,
   getCollectedPokemonLearnsets,
+  getCollectedItems,
+  getCollectedAbilities,
 } from "@/lib/collected-data";
 import { toKoreanMoveName, toKoreanRole, toKoreanTypes } from "@/lib/korean";
 import { ALL_TYPES, getTypeMultiplier } from "@/lib/type-chart";
@@ -40,6 +42,11 @@ export function getCatalogPokemon(): CatalogPokemon[] {
   const learnsets = getCollectedPokemonLearnsets();
   const learnsetBySlug = new Map(learnsets.map((entry) => [entry.slug, entry]));
   const overlayBySlug = getOverlayMap();
+  const items = getCollectedItems();
+  const abilities = getCollectedAbilities();
+  const itemBySlug = new Map(items.filter((item) => item.availableInChampions).map((item) => [item.slug, item]));
+  const abilityBySlug = new Map(abilities.map((ability) => [ability.slug, ability]));
+  const availableItemSlugs = new Set(itemBySlug.keys());
 
   const source = collected.filter((entry) => entry.regulationSets.length > 0 && !isMegaForm(entry.slug, entry.name));
 
@@ -79,6 +86,25 @@ export function getCatalogPokemon(): CatalogPokemon[] {
       const typeSummary = summarizeTypeMatchups(entry.types as PokemonType[]);
       const featuredMoves = deriveFeaturedMoves(moves, entry.types as PokemonType[], overlay);
       const usage = overlay?.usage ?? estimateUsage(entry.baseStats, moves.length, roles, entry.isFinalForm);
+      const overlayItem = overlay?.sets[0]?.item ?? null;
+      const suggestedItem = isAvailableItem(overlayItem, availableItemSlugs)
+        ? overlayItem
+        : entry.megaVariants[0]?.megaStoneName ?? null;
+      const suggestedAbility = overlay?.sets[0]?.ability ?? entry.megaVariants[0]?.abilityName ?? null;
+      const featuredMoveDetails = featuredMoves
+        .map((moveName) => {
+          const move = moves.find((entryMove) => entryMove.name === moveName || entryMove.slug === slugify(moveName));
+          return move
+            ? {
+                name: move.name,
+                slug: move.slug,
+                type: (move.type as PokemonType | null) ?? null,
+                power: move.power,
+                description: move.description,
+              }
+            : null;
+        })
+        .filter((move): move is NonNullable<typeof move> => Boolean(move));
 
       return {
         id: entry.slug,
@@ -95,8 +121,10 @@ export function getCatalogPokemon(): CatalogPokemon[] {
         moveCount: moves.length,
         featuredMoves,
         notes: overlay?.notes ?? buildNotes(entry.types as PokemonType[], roles, moves.length),
-        suggestedItem: overlay?.sets[0]?.item ?? entry.megaVariants[0]?.megaStoneName ?? null,
-        suggestedAbility: overlay?.sets[0]?.ability ?? entry.megaVariants[0]?.abilityName ?? null,
+        suggestedItem,
+        suggestedItemDescription: suggestedItem ? itemBySlug.get(slugify(suggestedItem))?.description ?? null : null,
+        suggestedAbility,
+        suggestedAbilityDescription: suggestedAbility ? abilityBySlug.get(slugify(suggestedAbility))?.description ?? null : null,
         setLabel: overlay?.sets[0]?.label ?? (featuredMoves.length > 0 ? "대표 운용 예시" : null),
         setSummary:
           overlay?.sets[0]?.summary ??
@@ -107,6 +135,7 @@ export function getCatalogPokemon(): CatalogPokemon[] {
                 .join(", ")} 기준으로 기본 운용 예시를 구성했습니다.`
             : null),
         megaVariants,
+        featuredMoveDetails,
       } satisfies CatalogPokemon;
     })
     .sort((left, right) => right.usage - left.usage || right.moveCount - left.moveCount);
@@ -140,6 +169,10 @@ function sameStats(
     left.spd === right.spd &&
     left.spe === right.spe
   );
+}
+
+function isAvailableItem(itemName: string | null, availableItemSlugs: Set<string>) {
+  return itemName ? availableItemSlugs.has(slugify(itemName)) : false;
 }
 
 function findOverlayByName(name: string) {

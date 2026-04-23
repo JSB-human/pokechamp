@@ -94,10 +94,19 @@ export type CatalogPokemon = {
   featuredMoves: string[];
   notes: string;
   suggestedItem: string | null;
+  suggestedItemDescription: string | null;
   suggestedAbility: string | null;
+  suggestedAbilityDescription: string | null;
   setLabel: string | null;
   setSummary: string | null;
   megaVariants: CatalogMegaVariant[];
+  featuredMoveDetails: Array<{
+    name: string;
+    slug: string;
+    type: PokemonType | null;
+    power: number | null;
+    description: string;
+  }>;
 };
 
 export type CatalogMegaVariant = {

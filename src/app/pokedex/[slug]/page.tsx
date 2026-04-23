@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { DataPageShell } from "@/components/data-page-shell";
+import { HoverCard } from "@/components/hover-card";
 import { pokemonData } from "@/data/champions-data";
 import { ItemThumb, PokemonThumb, TypeBadge } from "@/components/media";
 import { PokemonDetailBrowser } from "@/components/pokemon-detail-browser";
 import {
   getCollectedPokemon,
   getCollectedAbilities,
+  getCollectedItems,
   getCollectedMoves,
   getCollectedPokemonBySlug,
   getCollectedPokemonLearnset,
@@ -17,6 +19,7 @@ import {
   toKoreanAbilityDescription,
   toKoreanAbilityName,
   toKoreanDamageClass,
+  toKoreanItemDescription,
   toKoreanItemName,
   toKoreanMoveDescription,
   toKoreanMoveName,
@@ -94,12 +97,19 @@ export default async function PokemonDetailPage({
       name: toKoreanAbilityName(ability.name, ability.slug),
       description: toKoreanAbilityDescription(ability.description, ability.slug, ability.name),
     }));
+  const allAbilities = getCollectedAbilities();
+  const abilityBySlug = new Map(allAbilities.map((ability) => [ability.slug, ability]));
+  const allItems = getCollectedItems();
+  const itemBySlug = new Map(allItems.map((item) => [item.slug, item]));
+  const allMoves = getCollectedMoves();
+  const moveBySlug = new Map(allMoves.map((move) => [move.slug, move]));
+  const sampleSets = overlayEntry?.sets.filter((set) => itemBySlug.has(slugifyPokemonName(set.item))) ?? [];
   const insights = catalogEntry
     ? buildPokemonDetailInsights({
         pokemon: catalogEntry,
         learnset,
         catalog,
-        allMoves: getCollectedMoves(),
+        allMoves,
       })
     : null;
 
@@ -225,9 +235,15 @@ export default async function PokemonDetailPage({
                           {toKoreanPokemonName(mega.name, mega.slug)}
                         </h3>
                         {mega.megaStoneName ? (
-                          <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-black text-orange-800">
-                            {toKoreanItemName(mega.megaStoneName, mega.megaStoneSlug ?? undefined)}
-                          </span>
+                          <HoverCard
+                            title={toKoreanItemName(mega.megaStoneName, mega.megaStoneSlug ?? undefined)}
+                            description={getItemDescription(itemBySlug, mega.megaStoneName, mega.megaStoneSlug)}
+                            meta="메가스톤"
+                          >
+                            <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-black text-orange-800">
+                              {toKoreanItemName(mega.megaStoneName, mega.megaStoneSlug ?? undefined)}
+                            </span>
+                          </HoverCard>
                         ) : null}
                       </div>
                       <div className="mt-2 flex flex-wrap gap-2">
@@ -235,12 +251,19 @@ export default async function PokemonDetailPage({
                           <TypeBadge key={`${mega.slug}-${type.slug}`} type={type.name} label={toKoreanType(type.name)} iconUrl={type.iconUrl} />
                         ))}
                       </div>
-                      <div className="mt-3 rounded-2xl bg-sky-50 p-3 text-sm">
-                        <span className="font-black text-sky-700">특성 </span>
-                        <span className="font-semibold text-slate-800">
-                          {mega.abilityName ? toKoreanAbilityName(mega.abilityName, mega.abilitySlug ?? undefined) : "확인 필요"}
-                        </span>
-                      </div>
+                      <HoverCard
+                        title={mega.abilityName ? toKoreanAbilityName(mega.abilityName, mega.abilitySlug ?? undefined) : "확인 필요"}
+                        description={getAbilityDescription(abilityBySlug, mega.abilityName, mega.abilitySlug)}
+                        meta="메가진화 특성"
+                        className="mt-3 w-full"
+                      >
+                        <div className="w-full rounded-2xl bg-sky-50 p-3 text-sm">
+                          <span className="font-black text-sky-700">특성 </span>
+                          <span className="font-semibold text-slate-800">
+                            {mega.abilityName ? toKoreanAbilityName(mega.abilityName, mega.abilitySlug ?? undefined) : "확인 필요"}
+                          </span>
+                        </div>
+                      </HoverCard>
                     </div>
                   </div>
                   <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-6">
@@ -278,8 +301,8 @@ export default async function PokemonDetailPage({
             </div>
 
             <div className="mt-4 grid gap-4 xl:grid-cols-2">
-              <InsightMoveList title="강한 기술" tone="emerald" entries={insights.strongMoves} />
-              <InsightMoveList title="주의할 기술" tone="amber" entries={insights.weakMoves} />
+              <InsightMoveList title="강한 기술" tone="emerald" entries={insights.strongMoves} moveBySlug={moveBySlug} />
+              <InsightMoveList title="주의할 기술" tone="amber" entries={insights.weakMoves} moveBySlug={moveBySlug} />
             </div>
 
             <div className="mt-4 rounded-[1.5rem] border border-slate-200 bg-white p-4">
@@ -290,11 +313,21 @@ export default async function PokemonDetailPage({
                     <div className="font-black text-slate-950">{combo.title}</div>
                     <p className="mt-1 text-sm leading-6 text-slate-600">{combo.reason}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
-                      {combo.moves.map((move) => (
-                        <span key={`${combo.title}-${move}`} className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-800 shadow-sm">
-                          {toKoreanMoveName(move)}
-                        </span>
-                      ))}
+                      {combo.moves.map((move) => {
+                        const moveEntry = findMoveByName(moveBySlug, move);
+                        return (
+                          <HoverCard
+                            key={`${combo.title}-${move}`}
+                            title={toKoreanMoveName(move, moveEntry?.slug)}
+                            description={moveEntry ? toKoreanMoveDescription(moveEntry.description, moveEntry.slug, moveEntry.name) : null}
+                            meta={moveEntry ? `${toKoreanType(moveEntry.type ?? "unknown")} / 위력 ${moveEntry.power ?? "-"}` : "추천 기술"}
+                          >
+                            <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-800 shadow-sm">
+                              {toKoreanMoveName(move, moveEntry?.slug)}
+                            </span>
+                          </HoverCard>
+                        );
+                      })}
                     </div>
                   </article>
                 ))}
@@ -338,19 +371,41 @@ export default async function PokemonDetailPage({
                 {catalogEntry.setSummary ?? catalogEntry.notes}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-900">
-                  추천 도구: {catalogEntry.suggestedItem ? toKoreanItemName(catalogEntry.suggestedItem) : "미정"}
-                </span>
-                <span className="rounded-full bg-sky-100 px-3 py-1 text-sm font-semibold text-sky-900">
-                  추천 특성: {catalogEntry.suggestedAbility ? toKoreanAbilityName(catalogEntry.suggestedAbility) : "미정"}
-                </span>
+                <HoverCard
+                  title={catalogEntry.suggestedItem ? toKoreanItemName(catalogEntry.suggestedItem) : "미정"}
+                  description={getItemDescription(itemBySlug, catalogEntry.suggestedItem)}
+                  meta="추천 도구"
+                >
+                  <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-900">
+                    추천 도구: {catalogEntry.suggestedItem ? toKoreanItemName(catalogEntry.suggestedItem) : "미정"}
+                  </span>
+                </HoverCard>
+                <HoverCard
+                  title={catalogEntry.suggestedAbility ? toKoreanAbilityName(catalogEntry.suggestedAbility) : "미정"}
+                  description={getAbilityDescription(abilityBySlug, catalogEntry.suggestedAbility)}
+                  meta="추천 특성"
+                >
+                  <span className="rounded-full bg-sky-100 px-3 py-1 text-sm font-semibold text-sky-900">
+                    추천 특성: {catalogEntry.suggestedAbility ? toKoreanAbilityName(catalogEntry.suggestedAbility) : "미정"}
+                  </span>
+                </HoverCard>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
-                {catalogEntry.featuredMoves.map((move) => (
-                  <span key={move} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
-                    {toKoreanMoveName(move)}
-                  </span>
-                ))}
+                {catalogEntry.featuredMoves.map((move) => {
+                  const moveEntry = findMoveByName(moveBySlug, move);
+                  return (
+                    <HoverCard
+                      key={move}
+                      title={toKoreanMoveName(move, moveEntry?.slug)}
+                      description={moveEntry ? toKoreanMoveDescription(moveEntry.description, moveEntry.slug, moveEntry.name) : null}
+                      meta={moveEntry ? `${toKoreanType(moveEntry.type ?? "unknown")} / 위력 ${moveEntry.power ?? "-"}` : "추천 기술"}
+                    >
+                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                        {toKoreanMoveName(move, moveEntry?.slug)}
+                      </span>
+                    </HoverCard>
+                  );
+                })}
               </div>
             </div>
 
@@ -420,7 +475,7 @@ export default async function PokemonDetailPage({
           </section>
         ) : null}
 
-        {overlayEntry ? (
+        {overlayEntry && sampleSets.length > 0 ? (
           <section className="rounded-[1.6rem] border border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#fffaf5_100%)] p-5 shadow-sm">
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
@@ -430,11 +485,11 @@ export default async function PokemonDetailPage({
                 </p>
               </div>
               <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-500 shadow-sm">
-                확인된 세트 {overlayEntry.sets.length}개
+                확인된 세트 {sampleSets.length}개
               </span>
             </div>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              {overlayEntry.sets.map((set) => (
+              {sampleSets.map((set) => (
                 <article
                   key={`${overlayEntry.id}-${set.label}`}
                   className="rounded-[1.45rem] border border-slate-200 bg-white p-4 shadow-sm"
@@ -454,29 +509,50 @@ export default async function PokemonDetailPage({
                   </div>
 
                   <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-2xl bg-orange-50 p-3">
-                      <div className="text-xs font-semibold tracking-[0.16em] text-orange-500">추천 도구</div>
-                      <div className="mt-2 text-sm font-semibold text-orange-900">
-                        {toKoreanItemName(set.item)}
+                    <HoverCard
+                      title={toKoreanItemName(set.item)}
+                      description={getItemDescription(itemBySlug, set.item)}
+                      meta="추천 도구"
+                      className="w-full"
+                    >
+                      <div className="w-full rounded-2xl bg-orange-50 p-3">
+                        <div className="text-xs font-semibold tracking-[0.16em] text-orange-500">추천 도구</div>
+                        <div className="mt-2 text-sm font-semibold text-orange-900">
+                          {toKoreanItemName(set.item)}
+                        </div>
                       </div>
-                    </div>
-                    <div className="rounded-2xl bg-sky-50 p-3">
-                      <div className="text-xs font-semibold tracking-[0.16em] text-sky-500">추천 특성</div>
-                      <div className="mt-2 text-sm font-semibold text-sky-900">
-                        {toKoreanAbilityName(set.ability)}
+                    </HoverCard>
+                    <HoverCard
+                      title={toKoreanAbilityName(set.ability)}
+                      description={getAbilityDescription(abilityBySlug, set.ability)}
+                      meta="추천 특성"
+                      className="w-full"
+                    >
+                      <div className="w-full rounded-2xl bg-sky-50 p-3">
+                        <div className="text-xs font-semibold tracking-[0.16em] text-sky-500">추천 특성</div>
+                        <div className="mt-2 text-sm font-semibold text-sky-900">
+                          {toKoreanAbilityName(set.ability)}
+                        </div>
                       </div>
-                    </div>
+                    </HoverCard>
                   </div>
 
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {set.moves.map((move) => (
-                      <span
-                        key={`${set.label}-${move}`}
-                        className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700"
-                      >
-                        {toKoreanMoveName(move)}
-                      </span>
-                    ))}
+                    {set.moves.map((move) => {
+                      const moveEntry = findMoveByName(moveBySlug, move);
+                      return (
+                        <HoverCard
+                          key={`${set.label}-${move}`}
+                          title={toKoreanMoveName(move, moveEntry?.slug)}
+                          description={moveEntry ? toKoreanMoveDescription(moveEntry.description, moveEntry.slug, moveEntry.name) : null}
+                          meta={moveEntry ? `${toKoreanType(moveEntry.type ?? "unknown")} / 위력 ${moveEntry.power ?? "-"}` : "세트 기술"}
+                        >
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700">
+                            {toKoreanMoveName(move, moveEntry?.slug)}
+                          </span>
+                        </HoverCard>
+                      );
+                    })}
                   </div>
 
                   <div className="mt-4">
@@ -542,6 +618,44 @@ function slugifyPokemonName(value: string) {
     .replace(/[^a-z0-9-]/g, "");
 }
 
+function getItemDescription(
+  itemBySlug: Map<string, { name: string; slug: string; description: string }>,
+  name: string | null,
+  slug?: string | null,
+) {
+  if (!name) {
+    return null;
+  }
+
+  const item = itemBySlug.get(slug ?? slugifyPokemonName(name));
+  return item ? toKoreanItemDescription(item.description, item.slug, item.name) : null;
+}
+
+function getAbilityDescription(
+  abilityBySlug: Map<string, { name: string; slug: string; description: string }>,
+  name: string | null,
+  slug?: string | null,
+) {
+  if (!name) {
+    return null;
+  }
+
+  const ability = abilityBySlug.get(slug ?? slugifyPokemonName(name));
+  return ability ? toKoreanAbilityDescription(ability.description, ability.slug, ability.name) : null;
+}
+
+function findMoveByName(
+  moveBySlug: Map<string, { name: string; slug: string; type: string | null; power: number | null; description: string }>,
+  name: string,
+) {
+  const guessed = moveBySlug.get(slugifyPokemonName(name));
+  if (guessed) {
+    return guessed;
+  }
+
+  return [...moveBySlug.values()].find((move) => move.name === name) ?? null;
+}
+
 function InsightPokemonList({
   title,
   tone,
@@ -584,10 +698,12 @@ function InsightMoveList({
   title,
   tone,
   entries,
+  moveBySlug,
 }: {
   title: string;
   tone: "emerald" | "amber";
   entries: Array<{ slug: string; name: string; type: string | null; power: number | null; reason: string }>;
+  moveBySlug: Map<string, { name: string; slug: string; type: string | null; power: number | null; description: string }>;
 }) {
   const toneClass = tone === "emerald" ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900";
 
@@ -595,15 +711,27 @@ function InsightMoveList({
     <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4">
       <h3 className="text-lg font-black text-slate-950">{title}</h3>
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
-        {entries.map((entry) => (
-          <Link key={entry.slug} href={`/moves/${entry.slug}`} className={`rounded-2xl px-3 py-3 transition hover:-translate-y-0.5 ${toneClass}`}>
-            <div className="flex items-center justify-between gap-3">
-              <div className="truncate text-sm font-black">{toKoreanMoveName(entry.name, entry.slug)}</div>
-              {entry.power ? <span className="rounded-full bg-white/80 px-2 py-0.5 text-xs font-black">위력 {entry.power}</span> : null}
-            </div>
-            <div className="mt-1 text-xs font-semibold opacity-80">{entry.reason}</div>
-          </Link>
-        ))}
+        {entries.map((entry) => {
+          const move = moveBySlug.get(entry.slug);
+
+          return (
+            <HoverCard
+              key={entry.slug}
+              title={toKoreanMoveName(entry.name, entry.slug)}
+              description={move ? toKoreanMoveDescription(move.description, move.slug, move.name) : null}
+              meta={`${entry.type ? toKoreanType(entry.type) : "타입 미상"} / 위력 ${entry.power ?? "-"}`}
+              className="block"
+            >
+              <Link href={`/moves/${entry.slug}`} className={`block rounded-2xl px-3 py-3 transition hover:-translate-y-0.5 ${toneClass}`}>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="truncate text-sm font-black">{toKoreanMoveName(entry.name, entry.slug)}</div>
+                  {entry.power ? <span className="rounded-full bg-white/80 px-2 py-0.5 text-xs font-black">위력 {entry.power}</span> : null}
+                </div>
+                <div className="mt-1 text-xs font-semibold opacity-80">{entry.reason}</div>
+              </Link>
+            </HoverCard>
+          );
+        })}
       </div>
     </div>
   );

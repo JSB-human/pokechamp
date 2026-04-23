@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { HoverCard } from "@/components/hover-card";
 import {
   calculateFinalStat,
   calculateHpStat,
@@ -10,7 +11,10 @@ import {
 } from "@/lib/calc";
 import {
   toKoreanAbilityName,
+  toKoreanAbilityDescription,
+  toKoreanItemDescription,
   toKoreanItemName,
+  toKoreanMoveDescription,
   toKoreanMoveName,
   toKoreanNature,
   toKoreanPokemonName,
@@ -336,11 +340,26 @@ export function CalculatorLab({ catalog }: CalculatorLabProps) {
             <div className="mt-1 text-sm leading-6 text-slate-600">{setSummary}</div>
             <div className="mt-3 flex flex-wrap gap-2">
               {featuredMoves.length > 0 ? (
-                featuredMoves.map((move) => (
-                  <span key={move} className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-800 shadow-sm">
-                    {toKoreanMoveName(move)}
-                  </span>
-                ))
+                featuredMoves.map((move) => {
+                  const moveDetail = attacker.featuredMoveDetails.find((detail) => detail.name === move);
+
+                  return (
+                    <HoverCard
+                      key={move}
+                      title={toKoreanMoveName(move, moveDetail?.slug)}
+                      description={
+                        moveDetail
+                          ? toKoreanMoveDescription(moveDetail.description, moveDetail.slug, moveDetail.name)
+                          : null
+                      }
+                      meta={moveDetail ? `${moveDetail.type ?? "타입 미상"} / 위력 ${moveDetail.power ?? "-"}` : "추천 기술"}
+                    >
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-800 shadow-sm">
+                        {toKoreanMoveName(move, moveDetail?.slug)}
+                      </span>
+                    </HoverCard>
+                  );
+                })
               ) : (
                 <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-600">
                   추천 기술 준비 중
@@ -354,10 +373,20 @@ export function CalculatorLab({ catalog }: CalculatorLabProps) {
               <InfoPill
                 label="추천 도구"
                 value={activeAttacker.itemName ? toKoreanItemName(activeAttacker.itemName) : "확인 필요"}
+                description={
+                  activeAttacker.itemName && attacker.suggestedItemDescription
+                    ? toKoreanItemDescription(attacker.suggestedItemDescription, undefined, activeAttacker.itemName)
+                    : null
+                }
               />
               <InfoPill
                 label="현재 특성"
                 value={activeAttacker.abilityName ? toKoreanAbilityName(activeAttacker.abilityName) : "확인 필요"}
+                description={
+                  activeAttacker.abilityName && attacker.suggestedAbilityDescription
+                    ? toKoreanAbilityDescription(attacker.suggestedAbilityDescription, undefined, activeAttacker.abilityName)
+                    : null
+                }
               />
               <InfoPill label="타입" value={toKoreanTypes(activeAttacker.types).join(" / ")} />
               <InfoPill label="역할" value={attacker.roles.slice(0, 2).map(toKoreanRole).join(" / ") || "확인 필요"} />
@@ -478,12 +507,20 @@ function SelectCard({
   );
 }
 
-function InfoPill({ label, value }: { label: string; value: string }) {
-  return (
+function InfoPill({ label, value, description }: { label: string; value: string; description?: string | null }) {
+  const content = (
     <div className="rounded-2xl bg-white p-3">
       <div className="text-xs font-black text-slate-500">{label}</div>
       <div className="mt-1 truncate text-sm font-black text-slate-950">{value}</div>
     </div>
+  );
+
+  return description ? (
+    <HoverCard title={value} description={description} meta={label} className="block">
+      {content}
+    </HoverCard>
+  ) : (
+    content
   );
 }
 
